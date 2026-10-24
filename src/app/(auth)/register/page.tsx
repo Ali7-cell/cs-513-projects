@@ -29,7 +29,7 @@ export default function RegisterPage() {
             Web Programming
           </h1>
           <p className="text-xs font-bold text-uaf-forest tracking-wide mt-0.5">
-            Course Instructor: Mam Ramish Saleem • BS IT 5th Semester
+            Course Instructor: VF. Lecturer Ramish Saleem • BS IT 5th Semester
           </p>
           <p className="text-xs text-gray-500 mt-1 max-w-sm">
             Register your credentials as the group leader to submit and manage your

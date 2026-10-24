@@ -94,7 +94,7 @@ export default async function GroupProfilePage({
               {group.groupName}
             </h1>
             <p className="text-xs text-gray-500 mt-1">
-              CS-513: Web Programming • Instructor: Mam Ramish Saleem
+              CS-513: Web Programming • Instructor: VF. Lecturer Ramish Saleem
             </p>
           </div>
 

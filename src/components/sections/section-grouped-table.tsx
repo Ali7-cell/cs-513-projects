@@ -35,7 +35,7 @@ export const SectionGroupedTable: React.FC<SectionGroupedTableProps> = ({
             {title}
           </h1>
           <p className="text-xs text-blue-200 mt-0.5 font-medium">
-            Course Instructor: Mam Ramish Saleem • BS IT 5th Semester ({data.length} Groups)
+            Course Instructor: VF. Lecturer Ramish Saleem • BS IT 5th Semester ({data.length} Groups)
           </p>
         </div>
 

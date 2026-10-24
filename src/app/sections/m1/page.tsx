@@ -60,7 +60,7 @@ export default async function SectionM1Page() {
           </div>
           <div>
             <div className="text-xs font-bold text-uaf-green uppercase tracking-wider">
-              CS-513: Web Programming • Instructor: Mam Ramish Saleem
+              CS-513: Web Programming • Instructor: VF. Lecturer Ramish Saleem
             </div>
             <div className="text-sm sm:text-base font-extrabold text-gray-900">
               BS IT 5th Semester • Section M1

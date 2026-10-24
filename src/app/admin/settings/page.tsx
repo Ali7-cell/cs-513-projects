@@ -20,7 +20,7 @@ export default async function AdminSettingsPage() {
           Administrator Settings
         </h1>
         <p className="text-xs text-gray-500">
-          Course Instructor: Mam Ramish Saleem • CS-513: Web Programming
+          Course Instructor: VF. Lecturer Ramish Saleem • CS-513: Web Programming
         </p>
       </div>
 
@@ -33,7 +33,7 @@ export default async function AdminSettingsPage() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs bg-white/70 p-4 rounded-2xl border border-gray-100">
           <div>
             <span className="text-gray-400 block text-[10px] uppercase font-bold">Instructor / Admin</span>
-            <span className="font-bold text-gray-900">{user?.fullName || "Mam Ramish Saleem"}</span>
+            <span className="font-bold text-gray-900">{user?.fullName || "VF. Lecturer Ramish Saleem"}</span>
           </div>
           <div>
             <span className="text-gray-400 block text-[10px] uppercase font-bold">Email Address</span>

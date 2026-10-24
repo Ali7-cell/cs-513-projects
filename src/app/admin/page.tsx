@@ -53,7 +53,7 @@ export default async function AdminPage() {
             CS-513 Administrator Hub
           </h1>
           <p className="text-xs text-gray-600 mt-0.5 font-medium">
-            Course Instructor: <span className="font-bold text-gray-900">Mam Ramish Saleem</span> • CS-513: Web Programming (BS IT 5th)
+            Course Instructor: <span className="font-bold text-gray-900">VF. Lecturer Ramish Saleem</span> • CS-513: Web Programming (BS IT 5th)
           </p>
         </div>
         <div className="flex items-center gap-2 w-full sm:w-auto">

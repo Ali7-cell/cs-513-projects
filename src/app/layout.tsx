@@ -5,9 +5,9 @@ import { Header } from "@/components/layout/header";
 import { TopProgressBar } from "@/components/layout/top-progress-bar";
 
 export const metadata: Metadata = {
-  title: "CS-513: Web Programming — Project Portal | Mam Ramish Saleem",
+  title: "CS-513: Web Programming — Project Portal | VF. Lecturer Ramish Saleem",
   description:
-    "CS-513 Web Programming BS IT 5th Semester project registration, review management, and evaluation portal. Course Instructor: Mam Ramish Saleem.",
+    "CS-513 Web Programming BS IT 5th Semester project registration, review management, and evaluation portal. Course Instructor: VF. Lecturer Ramish Saleem.",
   icons: { icon: "/uaf-logo.png" },
 };
 

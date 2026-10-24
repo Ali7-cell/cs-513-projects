@@ -19,7 +19,7 @@ export default async function PdfExportsHubPage() {
           Official PDF Reports & Exports
         </h1>
         <p className="text-xs text-gray-500">
-          Generate official CS-513: Web Programming evaluation sheets, section rosters, and project dossiers. Instructor: Mam Ramish Saleem.
+          Generate official CS-513: Web Programming evaluation sheets, section rosters, and project dossiers. Instructor: VF. Lecturer Ramish Saleem.
         </p>
       </div>
 
