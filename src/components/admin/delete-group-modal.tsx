@@ -82,7 +82,7 @@ export const DeleteGroupModal: React.FC<DeleteGroupModalProps> = ({
             from the database?
           </p>
           <p className="text-[11px] text-gray-500">
-            This will permanently remove the group roster, project idea, member registration links, and all review records. This action cannot be reversed.
+            This will permanently remove the group roster, project idea, external links, and the team leader&apos;s login account (email &amp; AG number) from the database so they can register fresh.
           </p>
         </div>
 

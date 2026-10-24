@@ -130,14 +130,23 @@ export async function DELETE(
       .map((m) => m.regNumber?.toUpperCase().trim())
       .filter((r): r is string => Boolean(r));
 
-    // Find student accounts associated with this group (creator or member registration numbers)
+    const leaderMember =
+      group.members?.find((m) => m.role === "LEADER") || group.members?.[0];
+    const leaderReg = leaderMember?.regNumber?.trim();
+
+    // Find student accounts associated with this group (creator user, leader by AG#, or member registration numbers)
+    const orConditions: any[] = [{ id: group.createdById }];
+    if (leaderReg) {
+      orConditions.push({ regNumber: { equals: leaderReg, mode: "insensitive" } });
+    }
+    memberRegs.forEach((reg) => {
+      orConditions.push({ regNumber: { equals: reg, mode: "insensitive" } });
+    });
+
     const studentUsers = await prisma.user.findMany({
       where: {
         role: "STUDENT",
-        OR: [
-          { id: group.createdById },
-          ...(memberRegs.length > 0 ? [{ regNumber: { in: memberRegs } }] : []),
-        ],
+        OR: orConditions,
       },
       select: { id: true, email: true, regNumber: true },
     });
