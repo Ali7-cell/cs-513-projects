@@ -46,7 +46,7 @@ export default async function HomePage() {
             Project Management <span className="text-uaf-green">Portal</span>
           </h1>
           <p className="text-xs sm:text-sm text-gray-800 mt-2 font-bold">
-            Course Instructor: <span className="text-uaf-forest font-black underline decoration-emerald-500 underline-offset-4">Sir Ramish Saleem</span>
+            Course Instructor: <span className="text-uaf-forest font-black underline decoration-emerald-500 underline-offset-4">Mam Ramish Saleem</span>
           </p>
           <p className="text-[11px] text-gray-500 mt-0.5 font-medium">
             BS Information Technology — 5th Semester (Morning M1 & M2)

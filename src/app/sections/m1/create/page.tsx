@@ -73,7 +73,7 @@ export default async function CreateGroupM1Page() {
             Create Group Profile — Section M1
           </h1>
           <p className="text-xs text-gray-500 mt-0.5">
-            CS-513: Web Programming • Instructor: Sir Ramish Saleem
+            CS-513: Web Programming • Instructor: Mam Ramish Saleem
           </p>
         </div>
       </div>

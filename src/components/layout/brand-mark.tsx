@@ -24,7 +24,7 @@ export const BrandMark: React.FC = () => {
           Web Programming
         </span>
         <span className="text-[9px] sm:text-[10px] font-bold text-uaf-emerald tracking-wider truncate">
-          Sir Ramish Saleem • BS IT 5th
+          Mam Ramish Saleem • BS IT 5th
         </span>
       </div>
     </Link>

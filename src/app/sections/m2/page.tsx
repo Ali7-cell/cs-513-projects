@@ -61,7 +61,7 @@ export default async function SectionM2Page() {
           </div>
           <div>
             <div className="text-xs font-bold text-amber-700 uppercase tracking-wider">
-              CS-513: Web Programming • Instructor: Sir Ramish Saleem
+              CS-513: Web Programming • Instructor: Mam Ramish Saleem
             </div>
             <div className="text-sm sm:text-base font-extrabold text-gray-900">
               BS IT 5th Semester • Section M2

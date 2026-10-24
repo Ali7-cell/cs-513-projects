@@ -92,7 +92,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
                 </div>
                 <div>
                   <p className="text-xs font-bold leading-tight">CS-513: Web Programming</p>
-                  <p className="text-[10px] text-emerald-300">Instructor: Sir Ramish Saleem</p>
+                  <p className="text-[10px] text-emerald-300">Instructor: Mam Ramish Saleem</p>
                 </div>
               </div>
               <button

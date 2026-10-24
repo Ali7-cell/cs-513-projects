@@ -29,7 +29,7 @@ export default function LoginPage() {
             Web Programming
           </h1>
           <p className="text-xs font-bold text-uaf-forest tracking-wide mt-0.5">
-            Course Instructor: Sir Ramish Saleem
+            Course Instructor: Mam Ramish Saleem
           </p>
           <p className="text-xs text-gray-500 mt-1">
             BS IT 5th Semester • Project Group Portal

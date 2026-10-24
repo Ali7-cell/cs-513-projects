@@ -7,7 +7,7 @@ export function generateSectionReportPdf(sectionCode: string, groups: any[]): Bu
   drawUafPdfHeader(
     doc,
     `SECTION ${sec} COMPREHENSIVE GROUPS REGISTER (${groups.length} Groups)`,
-    `Generated on: ${new Date().toLocaleDateString("en-PK", { timeZone: "Asia/Karachi" })} | CS-513: Web Programming • Instructor: Sir Ramish Saleem`
+    `Generated on: ${new Date().toLocaleDateString("en-PK", { timeZone: "Asia/Karachi" })} | CS-513: Web Programming • Instructor: Mam Ramish Saleem`
   );
 
   let y = 42;

@@ -479,7 +479,7 @@ export const LoginForm: React.FC = () => {
         <form onSubmit={handleAdminSubmit} className="space-y-4">
           <div className="flex items-center gap-2 p-2.5 rounded-xl bg-amber-50/90 border border-amber-200 text-amber-900 text-xs font-semibold">
             <ShieldCheck className="w-4 h-4 text-amber-600 shrink-0" />
-            <span>Course Instructor & Administrator (Sir Ramish Saleem)</span>
+            <span>Course Instructor & Administrator (Mam Ramish Saleem)</span>
           </div>
 
           <div>

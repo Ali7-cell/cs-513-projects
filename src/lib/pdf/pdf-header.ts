@@ -21,7 +21,7 @@ export function drawUafPdfHeader(doc: jsPDF, title: string, subtitle: string) {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9.5);
   doc.setTextColor(14, 110, 60); // #0E6E3C
-  doc.text("Course Instructor: Sir Ramish Saleem — BS IT 5th Semester", 36, 22);
+  doc.text("Course Instructor: Mam Ramish Saleem — BS IT 5th Semester", 36, 22);
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(10.5);
