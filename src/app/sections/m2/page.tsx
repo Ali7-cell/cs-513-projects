@@ -85,73 +85,156 @@ export default async function SectionM2Page() {
         </div>
       </div>
 
-      {/* User's Own Group Quick Banner if registered */}
-      {userGroup && (
-        <div className="p-4 rounded-2xl bg-emerald-50/90 border border-emerald-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
-          <div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs font-bold text-emerald-950 uppercase tracking-wide">
-                Your Registered Group:
+      {/* Student View: Show ONLY their own group profile, or prompt to create one */}
+      {!isAdmin && (
+        userGroup ? (
+          <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-6 shadow-glass">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-200/80">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-uaf-green block mb-1">
+                  Your Registered Group Profile
+                </span>
+                <h2 className="text-xl font-black text-gray-900">
+                  {userGroup.groupName}
+                </h2>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  Section M2 • {userGroup.members?.length || 0} Team Members
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-800 border border-blue-200">
+                  {userGroup.reviewStatus.replace("_", " ")}
+                </span>
+                <Link
+                  href={`/groups/${userGroup.id}/edit`}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-uaf-green hover:bg-uaf-forest text-white text-xs font-bold shadow-sm transition-all"
+                >
+                  <Edit className="w-3.5 h-3.5" />
+                  <span>Edit Profile</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Project Idea Info */}
+            <div className="space-y-2">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 block">
+                Project Title & Concept
               </span>
-              <span className="text-sm font-black text-uaf-green">
-                {userGroup.groupName}
+              <h3 className="text-base font-bold text-gray-900">
+                {userGroup.project?.ideaName || "Untitled Project"}
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed whitespace-pre-wrap">
+                {userGroup.project?.description || "No description provided."}
+              </p>
+            </div>
+
+            {/* Team Members */}
+            <div className="space-y-2 pt-2 border-t border-gray-100">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 block">
+                Team Members ({userGroup.members?.length || 0})
               </span>
-              <span className="text-[10px] px-2 py-0.5 rounded-full font-bold bg-white text-emerald-800 border border-emerald-200">
-                {userGroup.reviewStatus.replace("_", " ")}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {userGroup.members?.map((m: any, mIdx: number) => (
+                  <div
+                    key={m.id || mIdx}
+                    className="p-3 rounded-xl bg-gray-50/80 border border-gray-100 flex items-center justify-between text-xs"
+                  >
+                    <div>
+                      <span className="font-bold text-gray-800 block">
+                        {m.fullName}
+                      </span>
+                      <span className="text-[10px] text-gray-500 font-mono">
+                        {m.regNumber}
+                      </span>
+                    </div>
+                    {m.role === "LEADER" && (
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800">
+                        Leader
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Links / Deliverables */}
+            <div className="pt-2 border-t border-gray-100 flex flex-wrap items-center gap-2 text-xs">
+              {userGroup.project?.projectPdfUrl ? (
+                <a
+                  href={userGroup.project.projectPdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-50 text-red-700 font-bold border border-red-200 hover:bg-red-100 transition-all"
+                >
+                  <span>Google Drive PDF</span>
+                </a>
+              ) : (
+                <span className="text-xs text-gray-400 italic">No Drive link</span>
+              )}
+
+              {userGroup.project?.githubUrl && (
+                <a
+                  href={userGroup.project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gray-100 text-gray-800 font-bold border border-gray-200 hover:bg-gray-200 transition-all"
+                >
+                  <span>GitHub Repository</span>
+                </a>
+              )}
+
+              {userGroup.project?.websiteUrl && (
+                <a
+                  href={userGroup.project.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 text-blue-700 font-bold border border-blue-200 hover:bg-blue-100 transition-all"
+                >
+                  <span>Live Demo</span>
+                </a>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="p-8 text-center glass-panel rounded-3xl space-y-4">
+            <div className="w-12 h-12 mx-auto rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center">
+              <Users className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-gray-900">
+                You have not registered a group yet
+              </h3>
+              <p className="text-xs text-gray-500 max-w-sm mx-auto mt-1">
+                Each student group must register with 2 to 7 members, a project idea, and team details.
+              </p>
+            </div>
+            <Link
+              href="/sections/m2/create"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-uaf-green hover:bg-uaf-forest text-white text-xs font-bold shadow-md shadow-emerald-900/15 transition-all"
+            >
+              <PlusCircle className="w-4 h-4" />
+              <span>Create Group Profile Now</span>
+            </Link>
+          </div>
+        )
+      )}
+
+      {/* Admin View ONLY: View all groups in the section */}
+      {isAdmin && (
+        groups.length > 0 ? (
+          <div className="space-y-4 pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xs font-bold text-gray-700 uppercase tracking-wider">
+                All Section M2 Groups ({groups.length})
+              </h2>
+              <span className="text-xs text-gray-400 font-medium">
+                Admin Evaluation Directory
               </span>
             </div>
-            <p className="text-xs text-emerald-800/80 mt-0.5">
-              Project: {userGroup.project?.ideaName || "Untitled Project"} • {userGroup.members?.length || 0} Members
-            </p>
-          </div>
-          <div className="flex items-center gap-2 w-full sm:w-auto">
-            <Link
-              href={`/groups/${userGroup.id}`}
-              className="flex-1 sm:flex-initial text-center px-3 py-2 rounded-xl bg-white text-gray-700 hover:text-uaf-green text-xs font-bold border border-emerald-200 shadow-sm transition-all"
-            >
-              View Details
-            </Link>
-            <Link
-              href={`/groups/${userGroup.id}/edit`}
-              className="flex-1 sm:flex-initial justify-center px-3 py-2 rounded-xl bg-uaf-green text-white hover:bg-uaf-forest text-xs font-bold shadow-sm transition-all flex items-center gap-1.5"
-            >
-              <Edit className="w-3.5 h-3.5" />
-              <span>Edit Profile</span>
-            </Link>
-          </div>
-        </div>
-      )}
 
-      {/* Live Deadline Countdown if active */}
-      {deadline && (
-        <div className="pt-2 max-w-md mx-auto">
-          <CountdownTimer deadline={deadline.deadline} title={deadline.title} />
-        </div>
-      )}
-
-      {/* Detailed Group Cards Section */}
-      {groups.length > 0 ? (
-        <div className="space-y-4 pt-4 border-t border-gray-200">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xs font-bold text-gray-700 uppercase tracking-wider">
-              Registered Groups in Section M2 ({groups.length})
-            </h2>
-            <span className="text-xs text-gray-400 font-medium">
-              Invariant: 2–7 Members
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {groups.map((g) => {
-              const isMyGroup =
-                g.createdById === user.id ||
-                g.members?.some(
-                  (m) =>
-                    user.regNumber &&
-                    m.regNumber?.toUpperCase() === user.regNumber.toUpperCase()
-                );
-
-              return (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {groups.map((g) => (
                 <GroupCard
                   key={g.id}
                   id={g.id}
@@ -161,22 +244,22 @@ export default async function SectionM2Page() {
                   memberCount={g.members?.length || 0}
                   presentationStatus={g.presentation?.status || "PENDING"}
                   reviewStatus={g.reviewStatus}
-                  isMyGroup={isMyGroup}
+                  isMyGroup={false}
                 />
-              );
-            })}
+              ))}
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className="p-8 text-center glass-panel rounded-3xl space-y-3">
-          <div className="w-12 h-12 mx-auto rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center">
-            <Users className="w-6 h-6" />
+        ) : (
+          <div className="p-8 text-center glass-panel rounded-3xl space-y-3">
+            <div className="w-12 h-12 mx-auto rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center">
+              <Users className="w-6 h-6" />
+            </div>
+            <h3 className="text-sm font-bold text-gray-800">No Groups Registered Yet</h3>
+            <p className="text-xs text-gray-500 max-w-sm mx-auto">
+              No student teams have registered in Section M2 yet.
+            </p>
           </div>
-          <h3 className="text-sm font-bold text-gray-800">No Groups Registered Yet</h3>
-          <p className="text-xs text-gray-500 max-w-sm mx-auto">
-            No student teams have registered in Section M2 yet. Click the &ldquo;Create Group Profile&rdquo; button above to submit your team.
-          </p>
-        </div>
+        )
       )}
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getGroupById } from "@/lib/services/group-query.service";
 import { getCurrentUser } from "@/lib/auth/session";
 import { Badge } from "@/components/ui/badge";
@@ -28,13 +28,23 @@ export default async function GroupProfilePage({
   if (!group) return notFound();
 
   const user = await getCurrentUser();
-  const isAdmin = user?.role === "ADMIN";
-  const isCreator = user?.id === group.createdById;
+  if (!user) {
+    redirect(`/login?callbackUrl=/groups/${params.id}`);
+    return null;
+  }
+
+  const isAdmin = user.role === "ADMIN";
+  const isCreator = user.id === group.createdById;
   const isMember = group.members?.some(
     (m: any) =>
-      user?.regNumber &&
-      m.regNumber?.toUpperCase() === user?.regNumber?.toUpperCase()
+      user.regNumber &&
+      m.regNumber?.toUpperCase() === user.regNumber?.toUpperCase()
   );
+
+  // Privacy Protection: Students can only view their own group profile
+  if (!isAdmin && !isCreator && !isMember) {
+    redirect(`/sections/${user.sectionCode?.toLowerCase() || "m1"}`);
+  }
 
   const schedule = (group as any).schedule || (group as any).presentation;
   const scheduledDate =
