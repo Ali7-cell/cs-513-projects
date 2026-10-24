@@ -39,6 +39,16 @@ export async function createGroupTransactional(
     );
   }
 
+  const userExists = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { id: true },
+  });
+  if (!userExists) {
+    throw new Error(
+      "USER_NOT_FOUND: Your user session is invalid or the account was not found in the database. Please log out and log back in."
+    );
+  }
+
   const section = await prisma.section.findUnique({
     where: { code: input.sectionCode.toUpperCase() },
   });

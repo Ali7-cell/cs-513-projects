@@ -56,12 +56,16 @@ export async function POST(req: Request) {
     const group = await createGroupTransactional(parsed.data, user.id, user.role === "ADMIN");
     return NextResponse.json({ success: true, data: group }, { status: 201 });
   } catch (error: any) {
-    const msg = error.message || "Failed to create group";
+    let msg = error.message || "Failed to create group";
+    if (error.code === "P2003" || msg.includes("groups_createdById_fkey") || msg.includes("USER_NOT_FOUND")) {
+      msg = "Your login session is invalid or user account was not found in the database. Please log out and log in again.";
+    }
     const isConflict = msg.includes("already assigned") || msg.includes("Duplicate") || msg.includes("CONFLICT");
     const isDeadline = msg.includes("DEADLINE");
+    const isAuth = msg.includes("log out and log in") || msg.includes("Unauthorized");
     return NextResponse.json(
       { success: false, error: { message: msg } },
-      { status: isConflict ? 409 : isDeadline ? 403 : 400 }
+      { status: isConflict ? 409 : isDeadline ? 403 : isAuth ? 401 : 400 }
     );
   }
 }
