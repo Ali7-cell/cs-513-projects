@@ -38,9 +38,9 @@ export function buildGroupPayload(state: any, sectionCode: string) {
     sectionCode: sectionCode.toUpperCase(),
     ideaName: state.ideaName,
     description: state.description,
-    projectPdfUrl: state.pdfUrl || undefined,
-    githubUrl: state.githubUrl || undefined,
-    websiteUrl: state.websiteUrl || undefined,
+    projectPdfUrl: state.pdfUrl?.trim() ? state.pdfUrl.trim() : null,
+    githubUrl: state.githubUrl?.trim() ? state.githubUrl.trim() : null,
+    websiteUrl: state.websiteUrl?.trim() ? state.websiteUrl.trim() : null,
     members,
   };
 }

@@ -29,20 +29,19 @@ export const LinkInputs: React.FC<LinkInputsProps> = ({
     <div className="space-y-4">
       <div>
         <label className="block text-xs font-bold text-gray-700 mb-1">
-          Google Drive PDF Link *
+          Google Drive PDF Link (Optional)
         </label>
         <Input
           placeholder="https://drive.google.com/file/d/.../view?usp=sharing"
           value={pdfUrl}
           error={pdfError}
           onChange={(e) => onPdfChange(e.target.value)}
-          required
         />
         <div className="flex items-start gap-1.5 mt-1.5 text-[11px] text-gray-500">
           <Info className="w-3.5 h-3.5 text-uaf-green shrink-0 mt-0.5" />
           <span>
-            Must be a valid HTTPS link. Ensure your Google Drive document permissions are set to
-            &ldquo;Anyone with the link can view&rdquo; so evaluators can inspect your proposal document.
+            Optional link. You can submit now and add or update it later by editing your group profile. If provided, ensure permissions are set to
+            &ldquo;Anyone with the link can view&rdquo;.
           </span>
         </div>
       </div>

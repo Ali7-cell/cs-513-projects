@@ -4,10 +4,20 @@ import { memberItemSchema } from "./member.schema";
 const safeOptionalUrlSchema = z
   .string()
   .trim()
-  .url("Must be a valid URL")
-  .refine((url) => /^https?:\/\//i.test(url), "Must use HTTP or HTTPS protocol")
   .optional()
-  .or(z.literal(""));
+  .nullable()
+  .refine(
+    (val) => {
+      if (!val || val.trim() === "") return true;
+      try {
+        const url = new URL(val);
+        return url.protocol === "http:" || url.protocol === "https:";
+      } catch {
+        return false;
+      }
+    },
+    { message: "Must be a valid HTTP or HTTPS URL" }
+  );
 
 export const createGroupSchema = z
   .object({
@@ -27,12 +37,7 @@ export const createGroupSchema = z
       .min(20, "Project description must be at least 20 characters")
       .max(2500, "Project description cannot exceed 2500 characters")
       .trim(),
-    projectPdfUrl: z
-      .string()
-      .trim()
-      .min(1, "Google Drive PDF link is required")
-      .url("Must be a valid URL")
-      .refine((url) => /^https:\/\//i.test(url), "Google Drive link must use HTTPS"),
+    projectPdfUrl: safeOptionalUrlSchema,
     githubUrl: safeOptionalUrlSchema,
     websiteUrl: safeOptionalUrlSchema,
     members: z
