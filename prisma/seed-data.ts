@@ -15,7 +15,7 @@ export const SECTIONS = [
 
 export const INITIAL_USERS = [
   {
-    fullName: "Department Administrator",
+    fullName: "Sir Ramish Saleem",
     email: "admin.it@uaf.edu.pk",
     role: "ADMIN" as const,
     sectionCode: null,

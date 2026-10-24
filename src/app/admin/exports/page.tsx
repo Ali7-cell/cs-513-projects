@@ -19,7 +19,7 @@ export default async function PdfExportsHubPage() {
           Official PDF Reports & Exports
         </h1>
         <p className="text-xs text-gray-500">
-          Generate official University of Agriculture Faisalabad evaluation sheets, section rosters, and individual project dossiers.
+          Generate official CS-513: Web Programming evaluation sheets, section rosters, and project dossiers. Instructor: Sir Ramish Saleem.
         </p>
       </div>
 
@@ -40,7 +40,7 @@ export default async function PdfExportsHubPage() {
             </div>
           </div>
           <p className="text-xs text-gray-600 leading-relaxed">
-            Generates official multi-page A4 PDF including UAF seal, complete team rosters, registration numbers, project descriptions, Drive links, and presentation status.
+            Generates official multi-page A4 PDF including course header, complete team rosters, registration numbers, project descriptions, Drive links, and presentation status.
           </p>
           <a
             href="/api/export/section/m1"
@@ -66,7 +66,7 @@ export default async function PdfExportsHubPage() {
             </div>
           </div>
           <p className="text-xs text-gray-600 leading-relaxed">
-            Generates official multi-page A4 PDF including UAF seal, complete team rosters, registration numbers, project descriptions, Drive links, and presentation status.
+            Generates official multi-page A4 PDF including course header, complete team rosters, registration numbers, project descriptions, Drive links, and presentation status.
           </p>
           <a
             href="/api/export/section/m2"

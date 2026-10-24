@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
 import { Header } from "@/components/layout/header";
+import { TopProgressBar } from "@/components/layout/top-progress-bar";
 
 export const metadata: Metadata = {
-  title: "BS IT 5th Semester — Group Management Portal | UAF",
+  title: "CS-513: Web Programming — Project Portal | Sir Ramish Saleem",
   description:
-    "Official University of Agriculture Faisalabad (UAF) BS IT 5th Semester project group registration, review management, and presentation evaluation portal.",
+    "CS-513 Web Programming BS IT 5th Semester project registration, review management, and evaluation portal. Course Instructor: Sir Ramish Saleem.",
   icons: { icon: "/uaf-logo.png" },
 };
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-[#F4F7F6] text-uaf-charcoal antialiased flex flex-col relative selection:bg-emerald-600 selection:text-white">
+        <TopProgressBar />
         {/* Subtle Ambient Background Gradients for Glassmorphism */}
         <div className="fixed inset-0 pointer-events-none -z-20 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />

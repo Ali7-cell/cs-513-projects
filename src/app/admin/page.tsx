@@ -50,10 +50,10 @@ export default async function AdminPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-black text-gray-900 tracking-tight">
-            Administrator Overview
+            CS-513 Administrator Hub
           </h1>
-          <p className="text-xs text-gray-500 mt-0.5">
-            BS IT 5th Semester • Real-time database metrics & group activity
+          <p className="text-xs text-gray-600 mt-0.5 font-medium">
+            Course Instructor: <span className="font-bold text-gray-900">Sir Ramish Saleem</span> • CS-513: Web Programming (BS IT 5th)
           </p>
         </div>
         <div className="flex items-center gap-2 w-full sm:w-auto">

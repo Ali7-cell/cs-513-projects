@@ -247,7 +247,7 @@ export const LoginForm: React.FC = () => {
           }`}
         >
           <ShieldCheck className="w-3.5 h-3.5" />
-          <span>Faculty / Admin</span>
+          <span>Instructor / Admin</span>
         </button>
       </div>
 
@@ -287,7 +287,7 @@ export const LoginForm: React.FC = () => {
                 required
               />
               <p className="text-[10px] text-gray-400 mt-0.5">
-                Enter your official UAF email address or Ag registration number
+                Enter your student email or registration number (e.g. 2024-AG-6959)
               </p>
             </div>
 
@@ -479,7 +479,7 @@ export const LoginForm: React.FC = () => {
         <form onSubmit={handleAdminSubmit} className="space-y-4">
           <div className="flex items-center gap-2 p-2.5 rounded-xl bg-amber-50/90 border border-amber-200 text-amber-900 text-xs font-semibold">
             <ShieldCheck className="w-4 h-4 text-amber-600 shrink-0" />
-            <span>Faculty & Department Administrator Login</span>
+            <span>Course Instructor & Administrator (Sir Ramish Saleem)</span>
           </div>
 
           <div>

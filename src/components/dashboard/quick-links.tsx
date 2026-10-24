@@ -7,7 +7,7 @@ export const QuickLinks: React.FC = () => {
     { label: "Course Materials", href: "#", icon: BookOpen },
     { label: "Timetable", href: "#", icon: Calendar },
     { label: "IT Helpdesk", href: "#", icon: HelpCircle },
-    { label: "UAF Official Site", href: "https://uaf.edu.pk", icon: Globe, external: true },
+    { label: "University Portal", href: "https://uaf.edu.pk", icon: Globe, external: true },
   ];
 
   return (

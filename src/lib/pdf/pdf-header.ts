@@ -15,13 +15,13 @@ export function drawUafPdfHeader(doc: jsPDF, title: string, subtitle: string) {
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(13);
-  doc.setTextColor(19, 88, 53); // Official UAF Green #135835
-  doc.text("UNIVERSITY OF AGRICULTURE FAISALABAD", 36, 16);
+  doc.setTextColor(19, 88, 53); // Official Emerald #135835
+  doc.text("CS-513: WEB PROGRAMMING", 36, 16);
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9.5);
   doc.setTextColor(14, 110, 60); // #0E6E3C
-  doc.text("Department of Information Technology — BS IT 5th Semester", 36, 22);
+  doc.text("Course Instructor: Sir Ramish Saleem — BS IT 5th Semester", 36, 22);
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(10.5);

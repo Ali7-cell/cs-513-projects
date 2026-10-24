@@ -23,13 +23,13 @@ export default function RegisterPage() {
             />
           </div>
           <span className="text-3xl font-black text-uaf-green tracking-tight">
-            BS IT
+            CS-513
           </span>
-          <h1 className="text-lg font-bold text-gray-900 mt-1">
-            Create Team Leader Account
+          <h1 className="text-xl font-black text-gray-900 mt-1">
+            Web Programming
           </h1>
-          <p className="text-xs uppercase font-bold text-uaf-emerald tracking-wider mt-0.5">
-            5th Semester Project Group Registration
+          <p className="text-xs font-bold text-uaf-forest tracking-wide mt-0.5">
+            Course Instructor: Sir Ramish Saleem • BS IT 5th Semester
           </p>
           <p className="text-xs text-gray-500 mt-1 max-w-sm">
             Register your credentials as the group leader to submit and manage your

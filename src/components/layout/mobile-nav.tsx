@@ -88,11 +88,11 @@ export const MobileNav: React.FC<MobileNavProps> = ({
             <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-emerald-950 text-white">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center">
-                  <span className="text-xs font-black text-uaf-gold">BSIT</span>
+                  <span className="text-[11px] font-black text-uaf-gold">513</span>
                 </div>
                 <div>
-                  <p className="text-xs font-bold leading-tight">UAF Portal Menu</p>
-                  <p className="text-[10px] text-emerald-300">5th Semester Portal</p>
+                  <p className="text-xs font-bold leading-tight">CS-513: Web Programming</p>
+                  <p className="text-[10px] text-emerald-300">Instructor: Sir Ramish Saleem</p>
                 </div>
               </div>
               <button
@@ -120,7 +120,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
                       {userEmail}
                     </p>
                     <span className="inline-block mt-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-white text-uaf-forest border border-emerald-200">
-                      {isAdmin ? "Faculty Admin" : `Section ${sec || "Student"}`}
+                      {isAdmin ? "Course Instructor (Admin)" : `Section ${sec || "Student"}`}
                     </span>
                   </div>
                 </div>

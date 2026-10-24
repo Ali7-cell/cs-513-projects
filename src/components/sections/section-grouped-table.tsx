@@ -23,7 +23,7 @@ export const SectionGroupedTable: React.FC<SectionGroupedTableProps> = ({
   data,
 }) => {
   const isM2 = sectionCode.toUpperCase() === "M2";
-  const title = `Starting BSIT Fifth ${isM2 ? "M2" : "M1"} List`;
+  const title = `CS-513: Web Programming — Section ${isM2 ? "M2" : "M1"} Project Directory`;
   const [viewMode, setViewMode] = useState<"auto" | "cards" | "table">("auto");
 
   return (
@@ -35,7 +35,7 @@ export const SectionGroupedTable: React.FC<SectionGroupedTableProps> = ({
             {title}
           </h1>
           <p className="text-xs text-blue-200 mt-0.5 font-medium">
-            Official BS IT 5th Semester • Section {isM2 ? "M2" : "M1"} Project Directory ({data.length} Groups)
+            Course Instructor: Sir Ramish Saleem • BS IT 5th Semester ({data.length} Groups)
           </p>
         </div>
 

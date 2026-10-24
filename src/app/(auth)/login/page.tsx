@@ -23,16 +23,16 @@ export default function LoginPage() {
             />
           </div>
           <span className="text-3xl font-black text-uaf-green font-sans tracking-tight">
-            BS IT
+            CS-513
           </span>
-          <h1 className="text-lg font-bold text-gray-900 mt-1">
-            University of Agriculture Faisalabad
+          <h1 className="text-xl font-black text-gray-900 mt-1">
+            Web Programming
           </h1>
-          <p className="text-xs uppercase font-bold text-uaf-emerald tracking-wider mt-0.5">
-            Department of Information Technology
+          <p className="text-xs font-bold text-uaf-forest tracking-wide mt-0.5">
+            Course Instructor: Sir Ramish Saleem
           </p>
           <p className="text-xs text-gray-500 mt-1">
-            BS IT 5th Semester • Group Management Portal
+            BS IT 5th Semester • Project Group Portal
           </p>
         </div>
 
@@ -41,7 +41,7 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-6 pt-4 border-t border-gray-200/60 text-center text-[11px] text-gray-400 relative z-10">
-          System Access • Department of Computer Science & IT, UAF
+          CS-513 Web Programming • BS Information Technology 5th Semester
         </div>
       </div>
     </div>

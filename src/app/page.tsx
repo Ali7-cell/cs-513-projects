@@ -39,14 +39,17 @@ export default async function HomePage() {
         </div>
 
         <div>
-          <div className="inline-block px-3 py-1 rounded-full bg-emerald-100/80 text-uaf-forest text-[10px] sm:text-[11px] font-bold uppercase tracking-widest mb-1.5 border border-emerald-200">
-            Department of Information Technology
+          <div className="inline-block px-3.5 py-1 rounded-full bg-emerald-100 text-uaf-forest text-[11px] font-extrabold uppercase tracking-widest mb-1.5 border border-emerald-300 shadow-xs">
+            CS-513 • Web Programming
           </div>
-          <h1 className="text-xl sm:text-3xl font-black text-gray-900 tracking-tight leading-tight">
-            BS IT <span className="text-uaf-green">5th Semester</span>
+          <h1 className="text-2xl sm:text-4xl font-black text-gray-900 tracking-tight leading-tight">
+            Project Management <span className="text-uaf-green">Portal</span>
           </h1>
-          <p className="text-xs text-gray-600 mt-1 font-medium">
-            University of Agriculture Faisalabad
+          <p className="text-xs sm:text-sm text-gray-800 mt-2 font-bold">
+            Course Instructor: <span className="text-uaf-forest font-black underline decoration-emerald-500 underline-offset-4">Sir Ramish Saleem</span>
+          </p>
+          <p className="text-[11px] text-gray-500 mt-0.5 font-medium">
+            BS Information Technology — 5th Semester (Morning M1 & M2)
           </p>
         </div>
 
@@ -71,7 +74,7 @@ export default async function HomePage() {
                 Direct Portal Access
               </h2>
               <p className="text-xs text-gray-500 mt-0.5">
-                Enter student details or switch to Faculty / Admin
+                Enter student details or switch to Instructor Login
               </p>
             </div>
 
@@ -88,13 +91,13 @@ export default async function HomePage() {
 
             <div>
               <span className="inline-block px-3 py-1 rounded-full bg-emerald-50 text-uaf-forest text-xs font-bold mb-2 border border-emerald-200">
-                {isAdmin ? "Faculty Administrator" : `Section ${userSection || "Student"}`}
+                {isAdmin ? "Course Instructor & Admin" : `Section ${userSection || "Student"}`}
               </span>
               <h2 className="text-xl font-black text-gray-900">
                 Welcome, {user.fullName}
               </h2>
               <p className="text-xs text-gray-500 mt-1">
-                You are currently signed in with your official account.
+                You are signed in to the CS-513 Web Programming Portal.
               </p>
             </div>
 

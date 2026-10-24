@@ -28,8 +28,10 @@ export default async function SectionM2Page() {
     redirect("/sections/m1");
   }
 
-  const groups = await getSectionGroups("M2");
-  const deadline = await getActiveDeadline();
+  const [groups, deadline] = await Promise.all([
+    getSectionGroups("M2"),
+    getActiveDeadline(),
+  ]);
   const isAdmin = user.role === "ADMIN";
 
   // Transform database groups and reference groups for the table
@@ -58,8 +60,8 @@ export default async function SectionM2Page() {
             M2
           </div>
           <div>
-            <div className="text-xs font-bold text-gray-500 uppercase tracking-wider">
-              Morning Program Portal
+            <div className="text-xs font-bold text-amber-700 uppercase tracking-wider">
+              CS-513: Web Programming • Instructor: Sir Ramish Saleem
             </div>
             <div className="text-sm sm:text-base font-extrabold text-gray-900">
               BS IT 5th Semester • Section M2
