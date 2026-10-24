@@ -24,7 +24,7 @@ export default async function PdfExportsHubPage() {
       </div>
 
       {/* Section-wide Exports Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="glass-panel p-6 rounded-3xl space-y-4">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-uaf-green flex items-center justify-center font-bold">
@@ -32,15 +32,15 @@ export default async function PdfExportsHubPage() {
             </div>
             <div>
               <h3 className="text-base font-bold text-gray-900">
-                Section M1 Complete Report
+                Section M1 Report
               </h3>
               <p className="text-xs text-gray-500">
-                {m1Groups.length} registered groups in Section M1
+                {m1Groups.length} registered groups
               </p>
             </div>
           </div>
           <p className="text-xs text-gray-600 leading-relaxed">
-            Generates official multi-page A4 PDF including course header, complete team rosters, registration numbers, project descriptions, Drive links, and presentation status.
+            Generates 8-column tabular PDF with SR, Group Name, Team Leader, Leader AG#, Team Members, GitHub, Live Demo, and Google Drive links.
           </p>
           <a
             href="/api/export/section/m1"
@@ -53,20 +53,20 @@ export default async function PdfExportsHubPage() {
 
         <div className="glass-panel p-6 rounded-3xl space-y-4">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center font-bold">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center font-bold">
               <Users className="w-6 h-6" />
             </div>
             <div>
               <h3 className="text-base font-bold text-gray-900">
-                Section M2 Complete Report
+                Section M2 Report
               </h3>
               <p className="text-xs text-gray-500">
-                {m2Groups.length} registered groups in Section M2
+                {m2Groups.length} registered groups
               </p>
             </div>
           </div>
           <p className="text-xs text-gray-600 leading-relaxed">
-            Generates official multi-page A4 PDF including course header, complete team rosters, registration numbers, project descriptions, Drive links, and presentation status.
+            Generates 8-column tabular PDF with SR, Group Name, Team Leader, Leader AG#, Team Members, GitHub, Live Demo, and Google Drive links.
           </p>
           <a
             href="/api/export/section/m2"
@@ -74,6 +74,32 @@ export default async function PdfExportsHubPage() {
           >
             <Download className="w-4 h-4" />
             <span>Download Section M2 PDF</span>
+          </a>
+        </div>
+
+        <div className="glass-panel p-6 rounded-3xl space-y-4 border-2 border-emerald-500/30">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center font-bold">
+              <Users className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-gray-900">
+                All Sections Combined
+              </h3>
+              <p className="text-xs text-gray-500">
+                {m1Groups.length + m2Groups.length} total class groups
+              </p>
+            </div>
+          </div>
+          <p className="text-xs text-gray-600 leading-relaxed">
+            Master roster for entire 5th semester (M1 & M2) in official 8-column tabular format with all external project links.
+          </p>
+          <a
+            href="/api/export/section/all"
+            className="inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-[#0E366C] hover:bg-[#072449] text-white text-xs font-bold shadow-md shadow-blue-950/20 transition-all"
+          >
+            <Download className="w-4 h-4" />
+            <span>Download Entire Class PDF</span>
           </a>
         </div>
       </div>

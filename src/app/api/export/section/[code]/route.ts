@@ -16,16 +16,26 @@ export async function GET(
   }
 
   const sec = params.code.toUpperCase();
-  if (sec !== "M1" && sec !== "M2") {
+  if (sec !== "M1" && sec !== "M2" && sec !== "ALL") {
     return NextResponse.json(
-      { success: false, error: { message: "Invalid section" } },
+      { success: false, error: { message: "Invalid section. Use M1, M2, or ALL." } },
       { status: 400 }
     );
   }
 
-  const groups = await getSectionGroups(sec);
+  let groups: any[] = [];
+  if (sec === "ALL") {
+    const [m1, m2] = await Promise.all([
+      getSectionGroups("M1"),
+      getSectionGroups("M2"),
+    ]);
+    groups = [...m1, ...m2];
+  } else {
+    groups = await getSectionGroups(sec);
+  }
+
   const pdfBuffer = generateSectionReportPdf(sec, groups);
-  const filename = `BSIT-5th-${sec}-Groups.pdf`;
+  const filename = sec === "ALL" ? `BSIT-5th-All-Class-Groups.pdf` : `BSIT-5th-${sec}-Groups.pdf`;
 
   return new NextResponse(pdfBuffer, {
     status: 200,

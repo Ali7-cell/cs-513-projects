@@ -1,9 +1,7 @@
 import React from "react";
 import { redirect } from "next/navigation";
 import { getSectionGroups } from "@/lib/services/group-query.service";
-import { formatSectionGroupsForTable } from "@/lib/services/section-table-data";
 import { SectionTabs } from "@/components/sections/section-tabs";
-import { SectionGroupedTable } from "@/components/sections/section-grouped-table";
 import { GroupCard } from "@/components/groups/group-card";
 import { getCurrentUser } from "@/lib/auth/session";
 import { getActiveDeadline } from "@/lib/services/deadline.service";
@@ -32,9 +30,6 @@ export default async function SectionM1Page() {
     getActiveDeadline(),
   ]);
   const isAdmin = user.role === "ADMIN";
-
-  // Transform database groups and reference groups for the table
-  const tableData = formatSectionGroupsForTable("M1", groups);
 
   // Find user's group if any
   const userGroup = groups.find(
@@ -126,9 +121,6 @@ export default async function SectionM1Page() {
         </div>
       )}
 
-      {/* MAIN REQUIREMENT: Starting BSIT Fifth M1 List Table */}
-      <SectionGroupedTable sectionCode="M1" data={tableData} />
-
       {/* Live Deadline Countdown if active */}
       {deadline && (
         <div className="pt-2 max-w-md mx-auto">
@@ -137,11 +129,11 @@ export default async function SectionM1Page() {
       )}
 
       {/* Detailed Group Cards Section */}
-      {groups.length > 0 && (
+      {groups.length > 0 ? (
         <div className="space-y-4 pt-4 border-t border-gray-200">
           <div className="flex items-center justify-between">
             <h2 className="text-xs font-bold text-gray-700 uppercase tracking-wider">
-              Database Registered Groups ({groups.length})
+              Registered Groups in Section M1 ({groups.length})
             </h2>
             <span className="text-xs text-gray-400 font-medium">
               Invariant: 2–7 Members
@@ -173,6 +165,16 @@ export default async function SectionM1Page() {
               );
             })}
           </div>
+        </div>
+      ) : (
+        <div className="p-8 text-center glass-panel rounded-3xl space-y-3">
+          <div className="w-12 h-12 mx-auto rounded-2xl bg-emerald-50 text-uaf-green flex items-center justify-center">
+            <Users className="w-6 h-6" />
+          </div>
+          <h3 className="text-sm font-bold text-gray-800">No Groups Registered Yet</h3>
+          <p className="text-xs text-gray-500 max-w-sm mx-auto">
+            No student teams have registered in Section M1 yet. Click the &ldquo;Create Group Profile&rdquo; button above to submit your team.
+          </p>
         </div>
       )}
     </div>
