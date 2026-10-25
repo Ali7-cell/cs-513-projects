@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -15,10 +17,14 @@ import {
 } from "lucide-react";
 
 export default function UpcomingPresentationsPage() {
+  const { data: session, status: authStatus } = useSession();
+  const router = useRouter();
   const [schedules, setSchedules] = useState<any[]>([]);
   const [groups, setGroups] = useState<any[]>([]);
   const [selectedSection, setSelectedSection] = useState<string>("ALL");
   const [loading, setLoading] = useState(true);
+
+  const isAdmin = (session?.user as any)?.role === "ADMIN";
 
   // Scheduling modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,8 +62,13 @@ export default function UpcomingPresentationsPage() {
   };
 
   useEffect(() => {
+    if (authStatus === "loading") return;
+    if (!isAdmin) {
+      router.push("/login?admin=true");
+      return;
+    }
     fetchData();
-  }, [selectedSection]);
+  }, [authStatus, isAdmin, selectedSection]);
 
   const handleScheduleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,6 +102,14 @@ export default function UpcomingPresentationsPage() {
   const now = new Date();
   const upcoming = schedules.filter((s) => new Date(s.scheduledAt) >= now);
   const past = schedules.filter((s) => new Date(s.scheduledAt) < now);
+
+  if (authStatus === "loading" || !isAdmin) {
+    return (
+      <div className="p-12 text-center text-xs text-gray-400 glass-panel rounded-3xl">
+        Verifying administrator privileges...
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

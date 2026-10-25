@@ -5,6 +5,14 @@ import { createGroupTransactional } from "@/lib/services/group-create.service";
 import { getSectionGroups } from "@/lib/services/group-query.service";
 
 export async function GET(req: Request) {
+  const user = await getCurrentUser();
+  if (!user || user.role !== "ADMIN") {
+    return NextResponse.json(
+      { success: false, error: { message: "Forbidden: Administrator privileges required." } },
+      { status: 403 }
+    );
+  }
+
   const { searchParams } = new URL(req.url);
   const section = searchParams.get("section") || "m1";
   const search = searchParams.get("search") || undefined;

@@ -23,7 +23,7 @@ export const GroupForm: React.FC<{ sectionCode: string; initialData?: any; isEdi
     try {
       const payload = buildGroupPayload(state, sectionCode);
       const res = await submitGroupForm(payload, isEdit, groupId);
-      handlers.router.push(`/groups/${res.data.id}`);
+      handlers.router.replace(`/groups/${res.data.id}`);
     } catch (err: any) {
       setters.setErrorMsg(err.message);
     } finally {
@@ -48,7 +48,7 @@ export const GroupForm: React.FC<{ sectionCode: string; initialData?: any; isEdi
         <Button
           type="button"
           variant="secondary"
-          onClick={() => handlers.router.back()}
+          onClick={() => handlers.router.push(`/sections/${sectionCode.toLowerCase()}`)}
           className="w-full sm:w-auto"
         >
           Cancel

@@ -1,18 +1,24 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { AdminTable } from "@/components/admin/admin-table";
 import { PresentationModal } from "@/components/admin/presentation-modal";
 import { CheckSquare, Filter, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function PresentationTrackingPage() {
+  const { data: session, status: authStatus } = useSession();
+  const router = useRouter();
   const [groups, setGroups] = useState<any[]>([]);
   const [sectionFilter, setSectionFilter] = useState<"ALL" | "M1" | "M2">("ALL");
   const [statusFilter, setStatusFilter] = useState<"ALL" | "PENDING" | "COMPLETED">("ALL");
   const [loading, setLoading] = useState(true);
   const [presGroup, setPresGroup] = useState<any>(null);
   const [actionLoading, setActionLoading] = useState(false);
+
+  const isAdmin = (session?.user as any)?.role === "ADMIN";
 
   const fetchGroups = async () => {
     setLoading(true);
@@ -38,8 +44,13 @@ export default function PresentationTrackingPage() {
   };
 
   useEffect(() => {
+    if (authStatus === "loading") return;
+    if (!isAdmin) {
+      router.push("/login?admin=true");
+      return;
+    }
     fetchGroups();
-  }, [sectionFilter, statusFilter]);
+  }, [authStatus, isAdmin, sectionFilter, statusFilter]);
 
   const handlePres = async () => {
     if (!presGroup) return;
@@ -55,6 +66,14 @@ export default function PresentationTrackingPage() {
     setPresGroup(null);
     fetchGroups();
   };
+
+  if (authStatus === "loading" || !isAdmin) {
+    return (
+      <div className="p-12 text-center text-xs text-gray-400 glass-panel rounded-3xl">
+        Verifying administrator privileges...
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

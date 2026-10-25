@@ -1,16 +1,22 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { AdminTable } from "@/components/admin/admin-table";
 import { ReviewModal } from "@/components/admin/review-modal";
 import { Clock, RefreshCw, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function PendingReviewsPage() {
+  const { data: session, status: authStatus } = useSession();
+  const router = useRouter();
   const [groups, setGroups] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [reviewGroup, setReviewGroup] = useState<any>(null);
   const [actionLoading, setActionLoading] = useState(false);
+
+  const isAdmin = (session?.user as any)?.role === "ADMIN";
 
   const fetchPending = async () => {
     setLoading(true);
@@ -28,8 +34,13 @@ export default function PendingReviewsPage() {
   };
 
   useEffect(() => {
+    if (authStatus === "loading") return;
+    if (!isAdmin) {
+      router.push("/login?admin=true");
+      return;
+    }
     fetchPending();
-  }, []);
+  }, [authStatus, isAdmin]);
 
   const handleReview = async (status: "APPROVED" | "REJECTED", reason?: string) => {
     if (!reviewGroup) return;
@@ -47,6 +58,14 @@ export default function PendingReviewsPage() {
     setReviewGroup(null);
     fetchPending();
   };
+
+  if (authStatus === "loading" || !isAdmin) {
+    return (
+      <div className="p-12 text-center text-xs text-gray-400 glass-panel rounded-3xl">
+        Verifying administrator privileges...
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

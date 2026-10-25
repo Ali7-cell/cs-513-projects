@@ -1,8 +1,10 @@
 import React from "react";
 import { getSectionGroups } from "@/lib/services/group-query.service";
+import { requireAdmin } from "@/lib/auth/session";
 import { FileDown, Download, Users, FileText } from "lucide-react";
 
 export default async function PdfExportsHubPage() {
+  await requireAdmin();
   const [m1Groups, m2Groups] = await Promise.all([
     getSectionGroups("M1"),
     getSectionGroups("M2"),

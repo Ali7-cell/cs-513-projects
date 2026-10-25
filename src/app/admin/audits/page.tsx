@@ -1,8 +1,10 @@
 import React from "react";
 import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth/session";
 import { History, ShieldCheck, User } from "lucide-react";
 
 export default async function AuditLogsPage() {
+  await requireAdmin();
   const logs = await prisma.auditLog.findMany({
     take: 50,
     orderBy: { createdAt: "desc" },

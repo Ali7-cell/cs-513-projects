@@ -89,6 +89,14 @@ export default function AdminSectionM1Page() {
     fetchGroups();
   };
 
+  if (authStatus === "loading" || !isAdmin) {
+    return (
+      <div className="p-12 text-center text-xs text-gray-400 glass-panel rounded-3xl">
+        Verifying administrator privileges...
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       <SectionTabs currentSection="m1" basePath="/admin/sections" />

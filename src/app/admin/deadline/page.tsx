@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -15,6 +17,8 @@ import {
 } from "lucide-react";
 
 export default function SubmissionDeadlinePage() {
+  const { data: session, status: authStatus } = useSession();
+  const router = useRouter();
   const [activeDeadline, setActiveDeadline] = useState<any>(null);
   const [history, setHistory] = useState<any[]>([]);
   const [deadlineInput, setDeadlineInput] = useState("");
@@ -26,6 +30,8 @@ export default function SubmissionDeadlinePage() {
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(
     null
   );
+
+  const isAdmin = (session?.user as any)?.role === "ADMIN";
 
   const fetchDeadline = async () => {
     setLoading(true);
@@ -53,8 +59,13 @@ export default function SubmissionDeadlinePage() {
   };
 
   useEffect(() => {
+    if (authStatus === "loading") return;
+    if (!isAdmin) {
+      router.push("/login?admin=true");
+      return;
+    }
     fetchDeadline();
-  }, []);
+  }, [authStatus, isAdmin]);
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,6 +109,14 @@ export default function SubmissionDeadlinePage() {
   const isClosed =
     activeDeadline &&
     (!activeDeadline.isActive || new Date(activeDeadline.deadline) < new Date());
+
+  if (authStatus === "loading" || !isAdmin) {
+    return (
+      <div className="p-12 text-center text-xs text-gray-400 glass-panel rounded-3xl">
+        Verifying administrator privileges...
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
