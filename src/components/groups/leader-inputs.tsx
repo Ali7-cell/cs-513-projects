@@ -23,7 +23,7 @@ export const LeaderInputs: React.FC<LeaderInputsProps> = ({
     <div className="p-4 rounded-xl bg-uaf-surface shadow-neu-sm border border-uaf-gold/20">
       <div className="flex items-center gap-2 mb-3 text-xs font-bold text-uaf-navy uppercase tracking-wider">
         <Shield className="w-4 h-4 text-uaf-gold" />
-        <span>Team Leader (Mandatory Member 1)</span>
+        <span>Team Leader (Mandatory / Solo Member)</span>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <Input

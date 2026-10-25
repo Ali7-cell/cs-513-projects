@@ -42,7 +42,7 @@ export const createGroupSchema = z
     websiteUrl: safeOptionalUrlSchema,
     members: z
       .array(memberItemSchema)
-      .min(2, "At least 2 members (Leader and Member 2) are required")
+      .min(1, "At least 1 member (Team Leader) is required")
       .max(7, "A group cannot have more than 7 members"),
   })
   .refine(

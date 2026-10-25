@@ -111,7 +111,7 @@ export const SectionGroupedTable: React.FC<SectionGroupedTableProps> = ({
                   </h3>
                 </div>
                 <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider bg-white/70 px-2 py-0.5 rounded-full border border-gray-200">
-                  {group.members.length + 1} Members
+                  {group.members.length === 0 ? "1 Member (Solo)" : `${group.members.length + 1} Members`}
                 </span>
               </div>
 
@@ -141,19 +141,25 @@ export const SectionGroupedTable: React.FC<SectionGroupedTableProps> = ({
                     <span>Team Members</span>
                   </span>
                   <div className="space-y-1.5 bg-gray-50/80 p-2.5 rounded-xl border border-gray-100">
-                    {group.members.map((member, mIdx) => (
-                      <div
-                        key={`m-${group.sr}-${mIdx}`}
-                        className="flex items-center justify-between py-1 border-b border-gray-200/60 last:border-0"
-                      >
-                        <span className="font-medium text-gray-800 truncate max-w-[160px]">
-                          {mIdx + 1}. {member.name || "—"}
-                        </span>
-                        <span className="font-mono text-[11px] text-gray-600 bg-white px-1.5 py-0.5 rounded border border-gray-200 shrink-0">
-                          {member.agNumber || "—"}
-                        </span>
+                    {group.members.length === 0 ? (
+                      <div className="text-center py-1 text-gray-400 italic text-[11px]">
+                        Solo Group (No additional members)
                       </div>
-                    ))}
+                    ) : (
+                      group.members.map((member, mIdx) => (
+                        <div
+                          key={`m-${group.sr}-${mIdx}`}
+                          className="flex items-center justify-between py-1 border-b border-gray-200/60 last:border-0"
+                        >
+                          <span className="font-medium text-gray-800 truncate max-w-[160px]">
+                            {mIdx + 1}. {member.name || "—"}
+                          </span>
+                          <span className="font-mono text-[11px] text-gray-600 bg-white px-1.5 py-0.5 rounded border border-gray-200 shrink-0">
+                            {member.agNumber || "—"}
+                          </span>
+                        </div>
+                      ))
+                    )}
                   </div>
                 </div>
 

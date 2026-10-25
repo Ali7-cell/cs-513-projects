@@ -17,18 +17,53 @@ export async function submitGroupForm(payload: any, isEdit?: boolean, groupId?: 
 }
 
 export function buildGroupPayload(state: any, sectionCode: string) {
-  const members = [
-    { fullName: state.leaderName, regNumber: state.leaderReg, role: "LEADER", displayOrder: 1 },
-    { fullName: state.m2Name, regNumber: state.m2Reg, role: "MEMBER", displayOrder: 2 },
+  const leaderName = state.leaderName?.trim() || "";
+  const leaderReg = state.leaderReg?.trim() || "";
+  const m2Name = state.m2Name?.trim() || "";
+  const m2Reg = state.m2Reg?.trim() || "";
+
+  if (!leaderName || !leaderReg) {
+    throw new Error("Team Leader full name and registration number are mandatory.");
+  }
+
+  if ((m2Name && !m2Reg) || (!m2Name && m2Reg)) {
+    throw new Error(
+      "If adding Team Member 2, both Full Name and Registration Number are required."
+    );
+  }
+
+  const members: Array<{
+    fullName: string;
+    regNumber: string;
+    role: "LEADER" | "MEMBER";
+    displayOrder: number;
+  }> = [
+    { fullName: leaderName, regNumber: leaderReg, role: "LEADER", displayOrder: 1 },
   ];
 
-  state.optionals.forEach((opt: any, idx: number) => {
-    if (opt.fullName && opt.regNumber) {
+  if (m2Name && m2Reg) {
+    members.push({
+      fullName: m2Name,
+      regNumber: m2Reg,
+      role: "MEMBER",
+      displayOrder: 2,
+    });
+  }
+
+  state.optionals.forEach((opt: any) => {
+    const optName = opt.fullName?.trim() || "";
+    const optReg = opt.regNumber?.trim() || "";
+    if ((optName && !optReg) || (!optName && optReg)) {
+      throw new Error(
+        "For additional team members, both Full Name and Registration Number are required."
+      );
+    }
+    if (optName && optReg) {
       members.push({
-        fullName: opt.fullName,
-        regNumber: opt.regNumber,
+        fullName: optName,
+        regNumber: optReg,
         role: "MEMBER",
-        displayOrder: idx + 3,
+        displayOrder: members.length + 1,
       });
     }
   });
