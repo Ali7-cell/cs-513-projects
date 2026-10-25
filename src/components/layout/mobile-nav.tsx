@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
@@ -40,7 +41,12 @@ export const MobileNav: React.FC<MobileNavProps> = ({
   isLoggedIn,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Close mobile nav on route change
   useEffect(() => {
@@ -73,12 +79,12 @@ export const MobileNav: React.FC<MobileNavProps> = ({
         {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
       </button>
 
-      {/* Drawer Overlay & Content */}
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex">
+      {/* Drawer Overlay & Content via Portal */}
+      {mounted && isOpen && createPortal(
+        <div className="fixed inset-0 z-[9999] flex">
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
             onClick={() => setIsOpen(false)}
           />
 
@@ -380,7 +386,8 @@ export const MobileNav: React.FC<MobileNavProps> = ({
               </div>
             )}
           </aside>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
