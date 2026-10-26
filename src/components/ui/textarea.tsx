@@ -11,15 +11,19 @@ interface TextareaProps
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
-    { label, error, maxLength, currentLength, className, id, ...props },
+    { label, error, maxLength, currentLength, className, id, name, ...props },
     ref
   ) => {
+    const generatedId = React.useId();
+    const textareaId = id || name || generatedId;
+    const textareaName = name || (id ? id : undefined);
+
     return (
       <div className="w-full">
         <div className="flex justify-between items-center mb-1.5">
           {label && (
             <label
-              htmlFor={id}
+              htmlFor={textareaId}
               className="block text-xs font-semibold uppercase tracking-wider text-uaf-navy"
             >
               {label}
@@ -33,7 +37,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         </div>
         <textarea
           ref={ref}
-          id={id}
+          id={textareaId}
+          name={textareaName}
           maxLength={maxLength}
           rows={4}
           className={clsx(

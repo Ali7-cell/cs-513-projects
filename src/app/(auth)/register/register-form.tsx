@@ -71,11 +71,14 @@ export const RegisterForm: React.FC = () => {
       )}
 
       <div>
-        <label className="block text-xs font-bold text-gray-700 mb-1">
+        <label htmlFor="register-fullname" className="block text-xs font-bold text-gray-700 mb-1">
           Full Name (Team Leader) *
         </label>
         <div className="relative">
           <Input
+            id="register-fullname"
+            name="fullName"
+            autoComplete="name"
             placeholder="e.g. Muhammad Ali"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
@@ -86,11 +89,14 @@ export const RegisterForm: React.FC = () => {
       </div>
 
       <div>
-        <label className="block text-xs font-bold text-gray-700 mb-1">
+        <label htmlFor="register-email" className="block text-xs font-bold text-gray-700 mb-1">
           University Email Address *
         </label>
         <Input
+          id="register-email"
+          name="email"
           type="email"
+          autoComplete="email"
           placeholder="e.g. student@uaf.edu.pk"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -100,10 +106,13 @@ export const RegisterForm: React.FC = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
-          <label className="block text-xs font-bold text-gray-700 mb-1">
+          <label htmlFor="register-regnumber" className="block text-xs font-bold text-gray-700 mb-1">
             Registration Number *
           </label>
           <Input
+            id="register-regnumber"
+            name="regNumber"
+            autoComplete="off"
             placeholder="e.g. 2022-AG-1234"
             value={regNumber}
             onChange={(e) => setRegNumber(e.target.value.toUpperCase())}
@@ -144,11 +153,14 @@ export const RegisterForm: React.FC = () => {
       </div>
 
       <div>
-        <label className="block text-xs font-bold text-gray-700 mb-1">
+        <label htmlFor="register-password" className="block text-xs font-bold text-gray-700 mb-1">
           Password *
         </label>
         <Input
+          id="register-password"
+          name="password"
           type="password"
+          autoComplete="new-password"
           placeholder="Choose a strong password (min 6 chars)"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -160,6 +172,7 @@ export const RegisterForm: React.FC = () => {
       <div className="pt-2">
         <Button
           type="submit"
+          id="register-submit-btn"
           disabled={loading}
           className="w-full py-2.5 bg-uaf-green hover:bg-uaf-forest text-white font-bold rounded-xl shadow-lg shadow-emerald-900/20 transition-all text-sm"
         >

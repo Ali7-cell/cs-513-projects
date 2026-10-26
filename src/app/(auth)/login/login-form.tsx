@@ -277,10 +277,13 @@ export const LoginForm: React.FC = () => {
 
             {/* Email or Ag No */}
             <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1">
+              <label htmlFor="student-login-identifier" className="block text-xs font-bold text-gray-700 mb-1">
                 University Email or Ag No *
               </label>
               <Input
+                id="student-login-identifier"
+                name="loginIdentifier"
+                autoComplete="username"
                 placeholder="e.g. student.m2@uaf.edu.pk or 2024-AG-6959"
                 value={loginIdentifier}
                 onChange={(e) => setLoginIdentifier(e.target.value)}
@@ -293,12 +296,15 @@ export const LoginForm: React.FC = () => {
 
             {/* Password with View / Hide toggle */}
             <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1">
+              <label htmlFor="student-login-password" className="block text-xs font-bold text-gray-700 mb-1">
                 Password *
               </label>
               <div className="relative">
                 <Input
+                  id="student-login-password"
+                  name="password"
                   type={showLoginPassword ? "text" : "password"}
+                  autoComplete="current-password"
                   placeholder="Enter your password"
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
@@ -307,6 +313,7 @@ export const LoginForm: React.FC = () => {
                 />
                 <button
                   type="button"
+                  id="student-login-password-toggle-btn"
                   onClick={() => setShowLoginPassword(!showLoginPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 p-1 cursor-pointer"
                   title={showLoginPassword ? "Hide password" : "View password"}
@@ -360,10 +367,13 @@ export const LoginForm: React.FC = () => {
 
             {/* 1. Full Name */}
             <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1">
+              <label htmlFor="student-signup-fullname" className="block text-xs font-bold text-gray-700 mb-1">
                 Full Name *
               </label>
               <Input
+                id="student-signup-fullname"
+                name="name"
+                autoComplete="name"
                 placeholder="e.g. Muhammad Ali"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
@@ -373,10 +383,13 @@ export const LoginForm: React.FC = () => {
 
             {/* 2. Ag No / Registration Number */}
             <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1">
+              <label htmlFor="student-signup-regnumber" className="block text-xs font-bold text-gray-700 mb-1">
                 Ag No / Registration Number *
               </label>
               <Input
+                id="student-signup-regnumber"
+                name="regNumber"
+                autoComplete="off"
                 placeholder="e.g. 2024-AG-6959 or AG001"
                 value={regNumber}
                 onChange={(e) => setRegNumber(e.target.value.toUpperCase())}
@@ -386,11 +399,14 @@ export const LoginForm: React.FC = () => {
 
             {/* 3. University Email */}
             <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1">
+              <label htmlFor="student-signup-email" className="block text-xs font-bold text-gray-700 mb-1">
                 University Email Address *
               </label>
               <Input
+                id="student-signup-email"
+                name="email"
                 type="email"
+                autoComplete="email"
                 placeholder="e.g. student.m2@uaf.edu.pk"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -400,10 +416,12 @@ export const LoginForm: React.FC = () => {
 
             {/* 4. Section Dropdown */}
             <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1">
+              <label htmlFor="student-signup-section" className="block text-xs font-bold text-gray-700 mb-1">
                 Select Your Section *
               </label>
               <select
+                id="student-signup-section"
+                name="section"
                 value={sectionCode}
                 onChange={(e) => setSectionCode(e.target.value as "M1" | "M2")}
                 className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 bg-white/90 text-xs font-bold text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 shadow-sm"
@@ -416,12 +434,15 @@ export const LoginForm: React.FC = () => {
 
             {/* 5. Password with View / Hide toggle */}
             <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1">
+              <label htmlFor="student-signup-password" className="block text-xs font-bold text-gray-700 mb-1">
                 Password *
               </label>
               <div className="relative">
                 <Input
+                  id="student-signup-password"
+                  name="password"
                   type={showSignupPassword ? "text" : "password"}
+                  autoComplete="new-password"
                   placeholder="Create a strong password (min 6 chars)"
                   value={signupPassword}
                   onChange={(e) => setSignupPassword(e.target.value)}
@@ -430,6 +451,7 @@ export const LoginForm: React.FC = () => {
                 />
                 <button
                   type="button"
+                  id="student-signup-password-toggle-btn"
                   onClick={() => setShowSignupPassword(!showSignupPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 p-1 cursor-pointer"
                   title={showSignupPassword ? "Hide password" : "View password"}
@@ -483,11 +505,14 @@ export const LoginForm: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">
+            <label htmlFor="admin-email" className="block text-xs font-bold text-gray-700 mb-1">
               Administrator Email *
             </label>
             <Input
+              id="admin-email"
+              name="email"
               type="email"
+              autoComplete="username email"
               value={adminEmail}
               onChange={(e) => setAdminEmail(e.target.value)}
               placeholder="admin.it@uaf.edu.pk"
@@ -496,12 +521,15 @@ export const LoginForm: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-gray-700 mb-1">
+            <label htmlFor="admin-password" className="block text-xs font-bold text-gray-700 mb-1">
               Administrator Password *
             </label>
             <div className="relative">
               <Input
+                id="admin-password"
+                name="password"
                 type={showAdminPassword ? "text" : "password"}
+                autoComplete="current-password"
                 placeholder="Enter admin password"
                 value={adminPassword}
                 onChange={(e) => setAdminPassword(e.target.value)}
@@ -510,6 +538,7 @@ export const LoginForm: React.FC = () => {
               />
               <button
                 type="button"
+                id="admin-password-toggle-btn"
                 onClick={() => setShowAdminPassword(!showAdminPassword)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 p-1 cursor-pointer"
                 title={showAdminPassword ? "Hide password" : "View password"}
@@ -526,6 +555,7 @@ export const LoginForm: React.FC = () => {
           <div className="pt-2">
             <Button
               type="submit"
+              id="admin-login-submit-btn"
               disabled={loading}
               className="w-full py-2.5 bg-uaf-forest hover:bg-uaf-darkgreen text-white font-bold rounded-xl shadow-lg shadow-emerald-900/25 transition-all text-xs flex items-center justify-center gap-2 cursor-pointer"
             >
