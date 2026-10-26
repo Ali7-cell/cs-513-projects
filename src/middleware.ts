@@ -7,10 +7,28 @@ export async function middleware(req: NextRequest) {
 
   // Protect all /admin routes and /api/admin endpoints
   if (pathname.startsWith("/admin") || pathname.startsWith("/api/admin")) {
-    const token = await getToken({
+    const secret =
+      process.env.NEXTAUTH_SECRET ||
+      "uaf_jwt_secret_key_super_secure_random_hash_2026";
+
+    const isProduction = process.env.NODE_ENV === "production";
+
+    // Check with explicit secure cookie name first in production
+    let token = await getToken({
       req,
-      secret: process.env.NEXTAUTH_SECRET,
+      secret,
+      cookieName: isProduction
+        ? "__Secure-next-auth.session-token"
+        : "next-auth.session-token",
     });
+
+    if (!token) {
+      // Fallback check
+      token = await getToken({
+        req,
+        secret,
+      });
+    }
 
     const isAdmin = token?.role === "ADMIN";
 

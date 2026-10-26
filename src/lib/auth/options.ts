@@ -4,9 +4,28 @@ import { prisma } from "@/lib/prisma";
 import { verifyPassword } from "@/lib/auth/password";
 import { Role } from "@/types/user";
 
+const authSecret =
+  process.env.NEXTAUTH_SECRET ||
+  "uaf_jwt_secret_key_super_secure_random_hash_2026";
+
 export const authOptions: NextAuthOptions = {
+  secret: authSecret,
   session: { strategy: "jwt" },
   pages: { signIn: "/login" },
+  cookies: {
+    sessionToken: {
+      name:
+        process.env.NODE_ENV === "production"
+          ? "__Secure-next-auth.session-token"
+          : "next-auth.session-token",
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
+    },
+  },
   providers: [
     CredentialsProvider({
       name: "UAF Credentials",

@@ -87,8 +87,7 @@ export const LoginForm: React.FC = () => {
           return;
         }
 
-        router.push("/admin");
-        router.refresh();
+        window.location.href = callbackUrl || "/admin";
         return;
       }
 
@@ -105,12 +104,15 @@ export const LoginForm: React.FC = () => {
         return;
       }
 
+      if (callbackUrl) {
+        window.location.href = callbackUrl;
+        return;
+      }
+
       // Check session to determine target section
       const session = await getSession();
       const userSection = (session?.user as any)?.sectionCode?.toLowerCase() || "m1";
-
-      router.push(callbackUrl || `/sections/${userSection}`);
-      router.refresh();
+      window.location.href = `/sections/${userSection}`;
     } catch (err: any) {
       setError(err.message || "An unexpected sign-in error occurred.");
     } finally {
@@ -201,8 +203,7 @@ export const LoginForm: React.FC = () => {
         return;
       }
 
-      router.push("/admin");
-      router.refresh();
+      window.location.href = callbackUrl || "/admin";
     } catch (err: any) {
       setError(err.message || "Admin authorization error.");
     } finally {
